@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hi, Azka.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0a1428;--bg2:#12284d;--card:rgba(20,40,78,.72);--ink:#f3f8ff;--soft:#a9c9ee;--blue:#8ec5ff;--line:rgba(142,197,255,.28);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(800px circle at var(--mx,50%) var(--my,30%),var(--bg2),var(--bg) 65%);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.8;overflow:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+.scr{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}
+.scr.on{display:flex;animation:in .9s ease}
+@keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+h1,h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margin:.1em 0;color:var(--blue)}
+h1{font-size:clamp(3rem,13vw,5.5rem);text-shadow:0 0 30px rgba(142,197,255,.45)}
+.sub{color:var(--soft);font-style:italic;margin:0 0 1.8em;max-width:30ch}
+.env{font-size:4rem;animation:fl 3s ease-in-out infinite;cursor:pointer}
+@keyframes fl{50%{transform:translateY(-10px)}}
+.btn{font:inherit;font-weight:600;color:#0a1428;background:linear-gradient(135deg,#fff,var(--blue));border:0;border-radius:999px;padding:.8em 2.2em;cursor:pointer;box-shadow:0 0 24px rgba(142,197,255,.4);transition:transform .2s}
+.btn:hover{transform:scale(1.05)}
+.btn.ghost{background:transparent;color:var(--soft);box-shadow:none;border:1px solid var(--line)}
+#bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:4px;width:0;background:linear-gradient(90deg,#fff,var(--blue));transition:width .5s;z-index:5}
+.card{width:100%;max-width:640px;max-height:calc(100% - 110px);overflow-y:auto;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.5em 1.5em;text-align:left;backdrop-filter:blur(8px);box-shadow:0 10px 50px rgba(0,0,0,.4);font-size:1.02rem}
+.card::-webkit-scrollbar{width:4px}.card::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+.tag{font-family:'Cormorant Garamond',Georgia,serif;color:var(--blue);font-style:italic;font-size:1.15rem;margin:0 0 .5em}
+.nav{display:flex;gap:12px;align-items:center;margin-top:18px}
+.cnt{color:var(--soft);font-size:.85rem;min-width:56px}
+.hint{color:var(--soft);font-size:.8rem;margin-top:10px;opacity:.8}
+.fx{position:fixed;pointer-events:none;font-size:1.6rem;animation:up 2.6s ease-out forwards;z-index:9}
+@keyframes up{to{transform:translateY(-70vh) rotate(40deg);opacity:0}}
+.fin p{max-width:34ch;color:var(--soft)}
+@media (prefers-reduced-motion:reduce){.env,.scr.on{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div id="bar"></div>
+
+<section class="scr on" id="s0">
+  <div class="env" id="env">💌</div>
+  <h1>Hi, Azka.</h1>
+  <p class="sub">Ada surat kecil untukmu, di hari yang seharusnya milik kita berdua.</p>
+  <button class="btn" id="open">Buka surat</button>
+</section>
+
+<section class="scr" id="s1">
+  <div class="card" id="card"></div>
+  <div class="nav">
+    <button class="btn ghost" id="prev">← Kembali</button>
+    <span class="cnt" id="cnt"></span>
+    <button class="btn" id="next">Lanjut →</button>
+  </div>
+  <div class="hint">Geser kiri/kanan atau pakai tombol panah</div>
+</section>
+
+<section class="scr fin" id="s2">
+  <h2 style="font-size:clamp(2rem,8vw,3.2rem)">Selamat Anniversary Kedua</h2>
+  <p>my home, my universe. Azure: ketenangan, kepercayaan, dan harapan.</p>
+  <div class="env" id="bq" style="font-size:3.4rem">💐</div>
+  <button class="btn" id="bloom">Sentuh bunganya 💙</button>
+  <div class="nav"><button class="btn ghost" id="again">Baca lagi</button></div>
+</section>
+
+<script>
+var T=[
+["Awal","Hi, Sayang? Azka? Apa pun panggilannya, itu nggak terlalu penting. Ini hampir anniversary kedua kita: bulan ketika kita pertama kali jatuh cinta, tanggal ketika komitmen kita dibuat."],
+["Ceritanya dulu","I don’t even know if I’m in the right place to say this, but here the story goes first. A lot, like literally a lot, is happening in her life. She might not be the flower of his eyes today, or at the very least she still hopes she was. She just wants him to know that every step of her being since that day will always remain her deepest regret. She means it. It might still be her, Raara, and so on, but the kind of person she is, indeed, is not the same. She misses him so, so badly that she couldn’t keep it to herself. Words might not convince you as a pledge, so let actions do it. She just wants him to feel and know how deeply serious she is about this relationship. She stays, and stays, and stays, and becomes the person he always wanted, just so everything could still happen. Dia lebih dari sekadar minta maaf untuk segala hal yang salah, menyakitkan, toxic, dan bodoh, dari yang disengaja sampai yang tidak disengaja. She brings him her deepest sorry, so please acknowledge it, Azka. She has told him before, didn’t she, she doesn’t have any reason to love him, so how could she have any reason to hate and leave him. She can’t. He knows that she can’t. It’s always been him. She drinks and she thinks of him, she eats and she thinks of him, she drives and she thinks of him. God probably has a friend in her mind to stay with, haha. Everything she does always resembles him. Every corner of this city, the places they went to, they haunt her so much that she knows she can barely move on from him, and she doesn’t want to. If time could heal, she’d prefer not to be healed and bear the wounds wherever she goes. And if she could ever be happier than ever, it must be the time he is safe and sound in her arms. She always wanted the best for her man. It might sound wrong to him, but she means it. She is so careless that she always spat out meaningless words to her man, until he couldn’t believe her any longer. She feels shame enough that she didn’t mean it."],
+["Terima kasih","I know it doesn’t have to be today, since I told you it’s our almost-anniversary. The genuine reason is that I just can’t hold it in any longer. For everything we did, dari SMA sampai sekarang, it all matters to me. Thank you for always being a great lover. Thank you for always staying and never giving up on me, at the very least until now. Terima kasih untuk selalu jadi punggung tempatku bersandar, pendengar di setiap jalan ceritaku, dan pendamping yang membimbing dan menuntunku menjadi diriku yang sekarang. Thank you for every meal you paid for, every thing, every gift that cost you your own money. Thank you for always spending time with me in your busy schedule every night, menemaniku di DC, cerita, atau sleepcall yang bikin HP-mu panas. I’m sorry it broke. Thank you for every piece of your mind, your veins, blood, anger, love, and every emotion that brought us here, everything unnoticed that you’ve spent on me. I appreciate everything you’ve done, even if it only meant breathing and answering my texts. Terima kasih. We have our own time and sound, so until the very last one drops, please don’t let go any sooner."],
+["Maaf","Sekarang, di detik-detik ketika dadaku terasa sesak hingga sulit bernapas, aku sadar air mata nggak akan pernah cukup buat bayar semua lelah yang udah kamu tanggung sendirian. I know I broke you. I know I pushed you to the very edge where staying with me feels like a punishment instead of a safe space. Maaf ya, Sayang. Maaf kalau selama ini caraku mencintaimu justru jadi hal paling menyakitkan yang harus kamu hadapi. Kamu sudah menyerah, kamu bilang kamu capek, dan bagian paling menyakitkan dari semua ini adalah: aku paham betul kenapa kamu sampai di titik itu. I don’t even have the right to beg you to stay if it only hurts you more. Tapi ya Tuhan, rasanya sakit sekali membayangkan duniaku berjalan tanpa kamu di dalamnya. When a broken soul is washed ashore, who am I to ask for more, more and more. Jujur saja, dan ini bukan pembelaan lagi, karena semua hal yang aku lakukan nggak ada yang cukup untuk dibela, kan? Bukan rasa takut kehilangan “posisi aman” atau tempat bersandar yang membuatku sebegitu memohon padamu hari ini. Bukan. It is never about my comfort zone. Aku menangis bukan karena kehilangan orang yang biasa memanjakanku atau menemani hariku. Aku menangis karena aku baru benar-benar sadar cara menjadi perempuan yang cukup, cara mencintai dengan benar, cara menghargai setiap debar napasmu… tapi waktu kita malah habis di saat aku baru belajar memahaminya. Isn’t it ironic? Aku baru jadi rumah yang nyaman buat kamu, pas pintunya sudah terlanjur kamu tutup rapat-rapat. Setiap sudut kota ini mendadak jadi saksi bisu yang kejam, Azka. Jalan-jalan, lorong-lorong sekolah tempat kita dulu sering mencuri waktu untuk ngobrol berdua, tempat-tempat yang dulu kita datangi, lagu-lagu yang biasa kita dengar di mobilmu, aroma parfum yang sering kamu pakai, makanan dan minuman yang sering kita pesan. They all scream your name. It haunts me to my bones. Kalau ada pilihan antara sembuh dari rasa sakit ini atau tetap membawa luka ini ke mana-mana sambil mengingatmu, I’d choose the wounds over healing, any single day. Karena melupakanmu rasanya seperti mencabut separuh nyawa dari ragaku sendiri. And no, I don’t want to move on. Aku ingin terus di sini, merawat sisa-sisa kenangan kita dari masa putih abu-abu sampai sekarang, berharap malaikat kecil di pikiranmu masih berbisik namaku di sela sibuknya harimu."],
+["Janji kita","Please, if you can’t find a single shred of belief left in me, kalau kamu sudah tidak lagi percaya pada omong kosong atau air mataku, kumohon, percayalah pada janji yang pernah kita ikrarkan bersama sejak MAN dulu. Ingat sumpah-sumpah kecil kita di balik seragam putih abu, prinsip tentang hubungan serius yang dulu aku dan kamu bangun mati-matian dari nol, bertahan melewati ribuan perselisihan hingga detik ini. Let that promise be the anchor. Bukan karena aku yang meminta, tapi karena aku tahu betapa berharganya arti komitmen itu. I am begging you, let that be the reason you hold on, at least one last time, just until my heart can truly accept how to let you go gracefully. Karena saat ini, aku sama sekali belum siap. I am so deeply, desperately not ready."],
+["Buket Azure 💐","Dan untuk buket bunga yang ada di hadapanmu sekarang… look at it, please? I thought day and night, right from the start of November, about what could bring Sayang any warmth, and I couldn’t stop being so excited about it. For everything that happened, I entrusted you with this loving thing. It might not be much, but hey, listen. It’s called Azure, find it familiar? It symbolizes tranquility, trust, and hope. I give you this calmness and my deep serenity through the theme, hehe, hope you like it! Aku sengaja memilih tema Azure ini, rangkaian warna biru yang melambangkan ketenangan, kepercayaan, dan harapan yang belum sepenuhnya mati di hatiku, mengingatkan pada langit cerah di hari-hari awal kita berani bermimpi bersama. I spent days thinking about what could possibly bring even a little warmth to your cold days, and this is what my broken heart could offer. Mungkin bunga ini tidak bisa menghapus luka yang tercipta, tapi semoga ia bisa menyampaikan setidaknya sebagian kecil dari rasa bersalah dan ketulusan masa remaja kita yang tumbuh dewasa bersama, yang tidak bisa lagi diungkapkan oleh kata-kataku yang sudah terlanjur kehilangan makna di matamu."],
+["Doaku","Kalaupun hari ini kamu tetap bersikeras ingin melepaskan tanganmu dari genggamanku, I want you to know that my ultimate prayer is no longer just about keeping you for myself. Kalau pada akhirnya kebahagiaanmu menuntutku untuk pergi, aku sedang belajar, Azka. Belajar memohon kepada semesta bukan agar kamu tetap di sini, tapi agar kamu disembuhkan dari segala lelah dan luka yang kubawa ke dalam hidupmu. Your peace indeed matters way more than my broken heart. Kalau kehadiranku selama ini hanya menjadi duri di harimu, aku ikhlas… sungguh, aku sedang mencoba berdamai dengan keikhlasan itu, walau rasanya separuh jiwaku ikut tercabut. Aku cuma ingin kamu tahu, tujuanku sekarang bukan lagi memaksa kita bertahan dengan cara yang salah, tapi membuktikan bahwa perempuan yang tadinya egois sudah sepenuhnya rela melakukan apa saja, bahkan merelakan egonya sendiri setiap waktu, asal kamu bisa bernapas tanpa beban, asal kamu bisa kembali menemukan senyummu yang sempat hilang karena aku. Mungkin aku memang sudah tidak lagi berguna sebagai tempatmu bersandar, mungkin aku sudah kehilangan hak untuk disebut rumah bagimu. And it hurts like hell, tapi biarlah aku memikul sisa rasa sakit ini sendirian. Kalau kamu butuh ruang untuk sembuh, take all the time you need. Aku tidak meminta posisimu kembali begitu saja. Aku hanya ingin kamu melihat kesungguhan di balik mataku yang basah ini, bahwa setelah semua salah yang aku perbuat, satu-satunya hal yang paling aku inginkan di dunia ini adalah melihatmu baik-baik saja, bahkan jika itu artinya aku harus berdiri di garis paling belakang hidupmu. I am trying so hard to let go of my selfishness, just to hold onto the genuine wish for your happiness. Jadi, kalaupun hari ini atau esok kamu benar-benar melangkah pergi meninggalkanku, bawalah keyakinan bahwa Raara yang ada bersamamu sekarang benar-benar tulus mencintaimu lebih dari dia mencintai dirinya sendiri."],
+["Untuk hari ini","Wait, hold… just for today. Kalau kamu mau melangkah, kalau kamu merasa kita sudah benar-benar usai, kumohon tahan langkahmu setidaknya untuk hari ini. Look around, Azka. Hari ini seharusnya menjadi hari di mana kita merayakan dua tahun perjalanan kita. Dua tahun kita bergandengan, menertawakan hal-hal bodoh, bertahan melewati kerasnya dunia, dan menjadi rumah bagi satu sama lain. Kita masih di sini, masih terikat dalam satu nama, dalam satu status yang kita bangun sejak masih berseragam putih abu. We are still us. Hubungan kita belum benar-benar mati di hadapan semesta, setidaknya tidak sebelum hari istimewa ini. So please, reconsider it, just for today. Jangan cabut namaku dari hatimu di hari yang harusnya jadi milik kita berdua. Aku tidak memintamu melupakan semua rasa lelahmu, aku cuma memintamu tinggal sebentar lagi, meminjamkanku satu hari lagi, dan lagi, untuk meyakinkanmu bahwa aku masih perempuan yang sama yang sangat mencintaimu, yang menyiapkan segalanya, dan yang tidak akan pernah lelah membuktikan bahwa kamu adalah satu-satunya rumah yang kuinginkan di dunia ini. Stay with me, just for today, my love. Let’s celebrate our two years, let’s pretend the world outside can wait, and let me hold your hand one more time as your girlfriend, as your Raara, as yours."],
+["Tempat pulang","Kalau duniaku selama ini penuh dengan suara bising yang melelahkan, maka mencintaimu adalah satu-satunya tempat paling tenang di mana aku selalu ingin pulang. I love the way you exist in my life so effortlessly, menjadi alasan di balik setiap senyum terbahagia saat membaca pesan darimu, menjadi debar hangat yang menenangkan setiap kali hari-hariku terasa terlalu berat. Rasanya tidak pernah ada satu hari pun di mana perasaanku surut; justru seiring waktu berjalan, cinta ini tumbuh semakin akar, semakin dalam, dan semakin melekat pada setiap bagian dari diriku. Kamu bukan cuma seseorang yang singgah, tapi kamu adalah rumah, semesta, dan tempat paling aman di mana aku bisa jadi diriku apa adanya tanpa takut dihakimi."],
+["Hal-hal kecil","Terima kasih ya, Sayang, untuk setiap hal kecil yang selalu kamu lakukan dengan tulus tanpa menuntut balasan. Dari obrolan panjang kita di setiap malam yang melelahkan, suara khasmu di telepon yang selalu jadi pengantar tidurku, tawa receh kita di dalam mobil, sampai kebaikan-kebaikan sederhana yang kamu curahkan untuk menjaga hari-hariku tetap hangat. You have been nothing short of amazing, menjadi kekasih terbaik yang selalu sabar menghadapi segala kurangku, dan merangkulku dengan cara paling lembut yang pernah kukenal. Aku mencintaimu bukan karena kamu harus sempurna, tapi karena setiap inci dari dirimu. Cara kamu berpikir, cara kamu tertawa, bahkan cara kamu menatapku, adalah hal paling berharga yang Tuhan titipkan dalam hidupku."],
+["Selamat anniversary","Dan di hari istimewa kita ini, ketika kita merayakan dua tahun perjalanan penuh cinta dan cerita, aku ingin kamu tahu betapa bersyukurnya aku karena semesta pernah berbaik hati mempertemukan kita. Selamat Anniversary Kedua, my home, my universe. Like water in a desert, flower in the concrete, sun to the moon, an angel in a nightmare, air in my lungs, veins to my blood, the arrow through my heart. Thank you for everything, really. Maaf untuk semuanya, dan terima kasih karena pernah mencintaiku semasa putih abu sampai semuanya menjadi rumit sekarang. I love you, always have, and God knows I always will.<br><br><i style=\"color:var(--blue)\">— Raara</i>"]
+];
+var $=function(i){return document.getElementById(i)},cur=0,n=T.length;
+function scr(k){['s0','s1','s2'].forEach(function(s){$(s).classList.toggle('on',s==='s'+k)});$('bar').style.width=k===0?'0':k===2?'100%':((cur+1)/n*100)+'%'}
+function show(i){
+  if(i<0)return;
+  if(i>=n){scr(2);return}
+  cur=i;var c=$('card');c.innerHTML='<p class="tag">'+T[i][0]+'</p><p style="margin:0">'+T[i][1]+'</p>';c.scrollTop=0;
+  $('cnt').textContent=(i+1)+' / '+n;$('prev').style.visibility=i?'visible':'hidden';
+  $('next').textContent=i===n-1?'Selesai ♥':'Lanjut →';
+  scr(1);c.parentNode.classList.remove('on');void c.offsetWidth;c.parentNode.classList.add('on');
+}
+function fx(e){var em=['💙','🦋','🪻','✨','🤍'];for(var k=0;k<14;k++){var d=document.createElement('div');d.className='fx';d.textContent=em[k%5];
+  d.style.left=(e.clientX-12+(Math.random()*160-80))+'px';d.style.top=(e.clientY-12)+'px';d.style.animationDelay=(Math.random()*.5)+'s';document.body.appendChild(d);
+  setTimeout(function(x){x.remove()},3400,d)}}
+$('open').onclick=$('env').onclick=function(){show(0)};
+$('next').onclick=function(){show(cur+1)};$('prev').onclick=function(){show(cur-1)};
+$('again').onclick=function(){show(0)};$('bloom').onclick=$('bq').onclick=fx;
+document.addEventListener('keydown',function(e){if($('s1').classList.contains('on')){if(e.key==='ArrowRight')show(cur+1);if(e.key==='ArrowLeft')show(cur-1)}});
+var sx=null;document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){if(sx===null||!$('s1').classList.contains('on'))return;var d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>70)show(cur+(d<0?1:-1));sx=null});
+document.addEventListener('pointermove',function(e){document.body.style.setProperty('--mx',e.clientX+'px');document.body.style.setProperty('--my',e.clientY+'px')});
+(function(){var c=$('cv'),x=c.getContext('2d'),W,H,P=[];
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight}rs();addEventListener('resize',rs);
+for(var i=0;i<60;i++)P.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2+.5,v:Math.random()*.4+.1,a:Math.random()});
+(function f(){x.clearRect(0,0,W,H);P.forEach(function(p){p.y-=p.v;p.a+=.02;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}
+x.fillStyle='rgba(190,225,255,'+(.25+.35*Math.sin(p.a))+')';x.beginPath();x.arc(p.x,p.y,p.r,0,6.3);x.fill()});requestAnimationFrame(f)})()})();
+</script>
+</body>
+</html>
